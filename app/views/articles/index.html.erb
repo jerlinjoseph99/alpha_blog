@@ -1,5 +1,22 @@
 <br/>
 
-<%= link_to "Add an Article", new_article_path %>
+<div class="row">
+    <div class="col-md-12">
+        
+        <div>
+            <%= link_to "New Article", new_article_path,:class => "btn btn-primary" %>
+        </div>
+        <% @articles.each do |article|  %>
+            </br>
+            <div class="well well-lg article-listing">
+            <h2><%= link_to article.title.capitalize, article_path(article) %></h2>
+                <h4><%= article.body.truncate(300) %></h4>
+            </div>
+        <% end %>
+        
+        
+        
+    </div>
+</div>
 
 
