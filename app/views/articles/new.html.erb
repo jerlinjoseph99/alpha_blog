@@ -7,7 +7,7 @@
         
         <% if @article.errors.any? %>
             <div class="alert alert-danger fade in">
-                <a href="/articles/new" class="close" data-dismiss="alert" aria-label="close">×</a>
+                <!--a href="/articles/new" class="close" data-dismiss="alert" aria-label="close">×</a-->
                 <% @article.errors.full_messages.each do |error_message| %>
                     <%= error_message %></br>
                 <% end %>

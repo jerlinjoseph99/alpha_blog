@@ -6,15 +6,17 @@
         <div>
             <%= link_to "New Article", new_article_path,:class => "btn btn-primary" %>
         </div>
-        <% @articles.each do |article|  %>
-            </br>
-            <div class="well well-lg article-listing">
-            <h2><%= link_to article.title.capitalize, article_path(article) %></h2>
-                <h4><%= article.body.truncate(300) %></h4>
-            </div>
+        <% if @articles.any? %>
+            <% @articles.each do |article|  %>
+                </br>
+                <div class="well well-lg article-listing">
+                    <h2><%= link_to article.title.capitalize, article_path(article) %></h2>
+                    <h4><%= article.body.truncate(300) %></h4>
+                </div>
+            <% end %>
+        <% else %>
+            <h2>There are no articles to display</h2>
         <% end %>
-        
-        
         
     </div>
 </div>
