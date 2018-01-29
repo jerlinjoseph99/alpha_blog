@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Creating Articles" do
+RSpec.feature "Editing Articles" do
     
     before do
         
