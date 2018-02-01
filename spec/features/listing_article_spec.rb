@@ -4,8 +4,12 @@ RSpec.feature "Listing Articles" do
     
     before do
         
-        @article1 = Article.create(:title =>"Article1", :body => "Lorem ipsum")
-        @article2 = Article.create(:title =>"Article2", :body => "Lorem ipsum dolor ")
+        @johndoe = User.create(:email =>"johndoe@gmail.com", :password => "password@123")
+        login_as(@johndoe)  #uses Warden
+        @article = Article.create(:title =>"Article1", :body => "Lorem ipsum", user: @johndoe)
+        
+        @article1 = Article.create(:title =>"Article1", :body => "Lorem ipsum", user: @johndoe)
+        @article2 = Article.create(:title =>"Article2", :body => "Lorem ipsum dolor ", user: @johndoe)
         
     end
     
