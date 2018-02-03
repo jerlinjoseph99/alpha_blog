@@ -5,7 +5,7 @@ RSpec.feature "Listing Articles" do
     before do
         
         @johndoe = User.create(:email =>"johndoe@gmail.com", :password => "password@123")
-        login_as(@johndoe)  #uses Warden
+       # login_as(@johndoe)  #uses Warden
         @article = Article.create(:title =>"Article1", :body => "Lorem ipsum", user: @johndoe)
         
         @article1 = Article.create(:title =>"Article1", :body => "Lorem ipsum", user: @johndoe)
@@ -13,7 +13,7 @@ RSpec.feature "Listing Articles" do
         
     end
     
-    scenario "user lists all articles" do
+    scenario "lists all articles with user not signed in" do
        
        visit '/'
        
@@ -25,6 +25,26 @@ RSpec.feature "Listing Articles" do
        
        expect(page).to have_link(@article2.title)
        expect(page).to have_link(@article2.title)
+       
+       expect(page).not_to have_link('New Article')
+        
+    end
+    
+     scenario "lists all articles with user signed in" do
+    
+       login_as(@johndoe)   
+       visit '/'
+       
+       expect(page).to have_content(@article1.title)
+       expect(page).to have_content(@article1.body)
+       
+       expect(page).to have_content(@article2.title)
+       expect(page).to have_content(@article2.body)
+       
+       expect(page).to have_link(@article2.title)
+       expect(page).to have_link(@article2.title)
+       
+       expect(page).to have_link('New Article')
         
     end
     
