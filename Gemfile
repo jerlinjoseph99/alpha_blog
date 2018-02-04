@@ -22,6 +22,8 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
 
+gem 'prawn'
+
 gem 'devise'
 
 # Use CoffeeScript for .coffee assets and views

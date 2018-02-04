@@ -25,6 +25,24 @@ class ArticlesController < ApplicationController
   
   def show
     @comment = Comment.new
+    
+    respond_to do |format|
+      # some other formats like: format.html { render :show }
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        
+        pdf.text @article.title, :align => :center, :size => 18
+        pdf.move_down 30
+        pdf.text @article.body
+
+        send_data pdf.render,
+          filename: "export.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
+      end
+    end
+    
   end
   
   def edit
