@@ -17,7 +17,7 @@ RSpec.feature "Adding Comments" do
        
        expect(page).to have_content('Body of article one')
        
-       fill_in 'Comment', with: 'An amazing Article'
+       fill_in 'Add a comment', with: 'An amazing Article'
        
        click_button 'Add Comment'
        
